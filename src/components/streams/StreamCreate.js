@@ -13,11 +13,13 @@ class StreamCreate extends React.Component {
   // }
 
   // can be destructured like this
-  renderInput({ input, label }) {
+  renderInput({ input, label, meta }) {
+    console.log('meta', meta);
     return (
       <div className='field'>
         <label>{label}</label>
         <input {...input} />
+        <div>{meta.error}</div>
       </div>
     );
   }
@@ -48,4 +50,21 @@ class StreamCreate extends React.Component {
   }
 }
 
-export default reduxForm({ form: 'streamCreate' })(StreamCreate);
+// meta.error
+const validate = (formValues) => {
+  const errors = {};
+
+  if (!formValues.title) {
+    // only ran if the user did not enter the title
+    errors.title = 'You must enter a title';
+  }
+  if (!formValues.description) {
+    errors.description = 'You must enter a description';
+  }
+
+  return errors;
+};
+
+export default reduxForm({ form: 'streamCreate', validate: validate })(
+  StreamCreate
+);
