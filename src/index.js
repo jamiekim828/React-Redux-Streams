@@ -18,3 +18,6 @@ ReactDOM.render(
 
 // redux dev tool
 // https://github.com/zalmoxisus/redux-devtools-extension
+// to debug
+// localhost:3000?debug_session=<some_string>
+// then redux dev tool will keep store earlier state
