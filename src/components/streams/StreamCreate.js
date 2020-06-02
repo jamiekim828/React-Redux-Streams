@@ -26,8 +26,9 @@ class StreamCreate extends React.Component {
   // can be destructured like this
   renderInput = ({ input, label, meta }) => {
     console.log('meta', meta);
+    const className = `field ${meta.error && meta.touched ? 'error' : ''}`;
     return (
-      <div className='field'>
+      <div className={className}>
         <label>{label}</label>
         <input {...input} autoComplete='off' />
         {this.renderError(meta)}
@@ -47,7 +48,7 @@ class StreamCreate extends React.Component {
         // this.props.handleSubmit comes from Redux Form
         // check this from the console
         onSubmit={this.props.handleSubmit(this.onSubmit)}
-        className='ui form '
+        className='ui form error'
       >
         <Field name='title' component={this.renderInput} label='Enter Title' />
         <Field
