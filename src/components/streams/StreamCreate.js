@@ -12,17 +12,28 @@ class StreamCreate extends React.Component {
   //   );
   // }
 
+  // use meta.touched for error handling
+  renderError({ error, touched }) {
+    if (touched && error) {
+      return (
+        <div className='ui error message'>
+          <div className='header'>{error}</div>
+        </div>
+      );
+    }
+  }
+
   // can be destructured like this
-  renderInput({ input, label, meta }) {
+  renderInput = ({ input, label, meta }) => {
     console.log('meta', meta);
     return (
       <div className='field'>
         <label>{label}</label>
-        <input {...input} />
-        <div>{meta.error}</div>
+        <input {...input} autoComplete='off' />
+        {this.renderError(meta)}
       </div>
     );
-  }
+  };
 
   onSubmit(formValue) {
     // event.preventDefault(); -> redux form will automatically do this
@@ -51,6 +62,7 @@ class StreamCreate extends React.Component {
 }
 
 // meta.error
+// we also can use meta.touched
 const validate = (formValues) => {
   const errors = {};
 
