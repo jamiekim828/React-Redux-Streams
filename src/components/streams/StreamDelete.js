@@ -4,7 +4,7 @@ import Modal from '../Modal';
 const StreamDelete = () => {
   return (
     <div>
-      StreamDelete <Modal />
+      Stream Delete <Modal />
     </div>
   );
 };
